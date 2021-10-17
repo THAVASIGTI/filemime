@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from utillity import *
+from .utillity import *
 import os,subprocess
 import logging,sys
 
@@ -9,7 +9,7 @@ class filemime:
         self.realPath = os.path.realpath(os.path.join(os.getcwd(),os.path.dirname(__file__)))
         self.exec = self.assginExec()
         if self.exec == None:
-            logging.error("Not Find Excuteble File")
+            logging.debug("Not Find Excuteble File")
     
     def assginExec(self):
         fileExec = None
@@ -17,8 +17,15 @@ class filemime:
             if sys.platform == WIN32:
                 usrFolder = os.path.join(self.realPath,USR,BIN)
                 fileExec = os.path.join(usrFolder,EXEC_FILE)
+            else:
+                get_line_path = os.environ.get(PATH)
+                if get_line_path is not None:
+                    for item_exec in get_line_path.split(os.pathsep):
+                        exec_path = os.path.join(item_exec,POSIX_FILE)
+                        if os.path.isfile(exec_path):
+                            fileExec = exec_path.replace(' ', '\\ ')
         except Exception as e:
-            logging.error(e)
+            logging.debug(e)
         return fileExec
 
     def load_file(self,filePath,mimeType=False):
@@ -38,4 +45,4 @@ class filemime:
                 if len(splitColan) == 2:
                     return splitColan[1].lstrip()
         except Exception as e:
-            logging.error(e)
+            logging.debug(e)
