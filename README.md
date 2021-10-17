@@ -34,15 +34,16 @@ obj = filemime()
 
 ``` python
 >>> obj.load_file("D:\\photos\\IMG_4917.JPG")
-
-'JPEG image data, Exif standard: [TIFF image data, little-endian, direntries=12, manufacturer=Canon, model=Canon EOS 1500D, orientation=lower-left, xresolution=196, yresolution=204, resolutionunit=2, datetime=2021:10:16 18:03:06], baseline, precision 8, 6000x4000, frames 3'
+"""JPEG image data, Exif standard: [TIFF image data, little-endian, direntries=12, 
+    manufacturer=Canon, model=Canon EOS 1500D, orientation=lower-left, xresolution=196, 
+    yresolution=204, resolutionunit=2, datetime=2021:10:16 18:03:06], baseline, precision 8, 
+    6000x4000, frames 3"""
 ```
 
 ## MIME TYPE
 
 ``` python
 >>> obj.load_file("D:\\photos\\IMG_4917.JPG",mimeType=True)
-
 'image/jpeg'
 >>> 
 ```
